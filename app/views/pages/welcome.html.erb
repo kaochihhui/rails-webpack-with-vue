@@ -1,0 +1,25 @@
+
+<div id="display_item">
+  <h1>Items For Sale</h1>
+
+  <div id="all_items" v-if="!if_all_items_hidden">
+    <div class="grid_item" v-for="data in item_info" v-bind:id="`${data.id}`" v-on:click="get_item_id(data.id)">
+      <div class="grid_img">
+        <img class="item_img" :src="`${data.image}`" alt="">
+        <img v-if="data.isSoldOut" class="sold_icon" :src="`${sold_img}`" alt="">
+      </div>
+
+      <div class="item_detail">
+        <p class="item_name">{{ data.name }}</p>
+        <div class="price_and_like">
+          <div class="price_tag">‎¥ {{ data.price }}</div>
+          <div class="like_count">♡ {{ data.like_count }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ind_item" v-if="!if_ind_item_hidden">
+    <detail_item_page :item_clicked="item_clicked" v-on:back_to_first_page="back_to_first_page"></detail_item_page>
+  </div>
+</div>
